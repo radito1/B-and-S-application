@@ -7,6 +7,9 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './pages/home/home.component';
 import { UserModule } from './user/user.module';
 
+import { environment } from './../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat/';
+
 
 
 @NgModule({
@@ -16,6 +19,7 @@ import { UserModule } from './user/user.module';
   ],
   imports: [
     BrowserModule,     
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     NoopAnimationsModule,    
     CoreModule,

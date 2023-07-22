@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +7,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
