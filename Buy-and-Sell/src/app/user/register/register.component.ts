@@ -51,10 +51,9 @@ export class RegisterComponent implements OnInit {
       .register(
         this.emailControl.value,
         this.passwordControl.value,
-        this.usernameControl.value
-      )
-      .then(() => {
-        this.snackBar.open('You signed up to this app!');
+        // this.usernameControl.value
+      ).then(() => {
+        this.snackBar.open('You registered successfuly!');
         this.router.navigate(['/']);
       })
       .catch((err) => {

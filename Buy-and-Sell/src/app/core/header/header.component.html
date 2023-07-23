@@ -1,12 +1,22 @@
 <mat-toolbar color="primary">
     Some Title
     <div>
-        <button mat-button routerLink="login">
-            <mat-icon>login</mat-icon>
-            Login
-        </button>
-        <button mat-button routerLink="register">
-            Register
-        </button>
+        <ng-container *ngIf="isLoggedIn">
+            <button mat-button (click)="logout()">
+                <mat-icon>logut</mat-icon>
+                Logout
+            </button>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoggedIn">
+            <button mat-button routerLink="login">
+                <mat-icon>login</mat-icon>
+                Login
+            </button>
+
+            <button mat-button routerLink="register">
+                Register
+            </button>
+        </ng-container>
     </div>
 </mat-toolbar>
