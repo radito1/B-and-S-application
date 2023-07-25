@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
-    Some Title
+    Title
+    <!-- <div class="logo-fit">
+        <img src="../../../assets/Buy & Sell-logo.png" alt="B&S logo">
+    </div> -->
+
     <div>
         <ng-container *ngIf="isLoggedIn">
             <button mat-button (click)="logout()">
@@ -19,4 +23,24 @@
             </button>
         </ng-container>
     </div>
+</mat-toolbar>
+<hr class="hr-fix">
+
+<mat-toolbar color="primary" class="second-nav">
+    <mat-toolbar-row>
+        <button mat-basic-button routerLink="/home">
+            <mat-icon>home</mat-icon>
+            Home
+        </button>
+
+        <button mat-basic-button routerLink="/catalog">
+            
+            Catalog
+        </button>
+        <ng-container *ngIf="isLoggedIn">
+            <button mat-basic-button routerLink="/add-item">
+                Add item
+            </button>
+        </ng-container>
+    </mat-toolbar-row>
 </mat-toolbar>

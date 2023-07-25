@@ -1,0 +1,31 @@
+<div class="form-container mat-elevation-z5">
+    <h1>Add Item</h1>
+    <form [formGroup]="addItemForm" (ngSubmit)="postItem()">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text"  name="name" placeholder="name" formControlName = "item_name" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput type="text"  name="price" placeholder="price" formControlName = "item_price" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>ImageURL</mat-label>
+            <input matInput type="text"  name="imageUrl" placeholder="imageUrl" formControlName = "item_imageUrl" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput type="text"  name="Description" placeholder="Description" formControlName = "item_description" />
+        </mat-form-field>
+
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit" >
+                Post
+            </button>
+        </div>      
+        
+    </form>
+</div>

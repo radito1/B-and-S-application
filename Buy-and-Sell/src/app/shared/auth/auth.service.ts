@@ -4,7 +4,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { User } from '../types/user';
+import { User } from '../models/user';
 import { from } from 'rxjs';
 
 @Injectable({
