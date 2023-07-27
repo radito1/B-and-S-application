@@ -1,4 +1,72 @@
-.home {
+/* .home-conteiner {
+    max-width: 1500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* .home-logo {
     display: flex;
     justify-content: center;
+    align-items: center;    
+}
+
+img {    
+    max-width: 600px; /* Adjust the width as needed */    
+/* } */
+/* 
+h1 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555555;
+} */
+
+
+.home-conteiner {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the logo */
+  .home-logo img {
+    max-width: 600px; /* Adjust the logo width as needed */
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  /* Style the article content */
+  article {
+    text-align: left;
+  }
+  
+  /* Style paragraphs inside the article */
+  article p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Style the list items */
+  article ol {
+    font-family: Arial, sans-serif;
+    list-style: decimal;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+.logo{ 
+  color: #283593;
+  font-family:'Times New Roman', Times, serif;
+  font-size: x-large;
 }
