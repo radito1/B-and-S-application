@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,24 +16,13 @@ export class HeaderComponent {
   ) {}
 
     logout() {
-      this.authService.logOut();
-      this.snackBar.open('Successful logout!');
-      this.router.navigate(['/']);
+      this.authService.logOut().then(()=>{
+        this.snackBar.open('Successful logout!');
+        this.router.navigate(['/']);
+      }).catch((err)=>{
+        this.snackBar.open('There was a problem while trying to logout!');
+      })
     }
-
-  // logout() {
-  //   this.authService.logout().subscribe((err) => {
-  //     console.log(err)
-  //     this.snackBar.open(
-  //       'There was a problem while trying to logout'
-  //     );
-  //   },
-  //   () => {
-  //     this.snackBar.open('Successful logout!');
-  //     this.router.navigate(['/']);
-  //   }
-  // );
-  // }
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);

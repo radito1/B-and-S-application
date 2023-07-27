@@ -3,4 +3,5 @@ export interface Item {
   item_price: string;
   item_imageUrl: string;
   item_description: string;
+  postedBy: string; 
 }

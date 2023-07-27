@@ -1,19 +1,19 @@
-<div *ngFor="let item of items">
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let item of items">
 
-    <mat-card class="example-card">
-        <mat-card-header>
-            <mat-card-title-group>
-                <mat-card-title>{{item.item_name}}</mat-card-title>
-                <mat-card-subtitle>{{item.item_price}}</mat-card-subtitle>
-                <img mat-card-md-image src="{{item.item_imageUrl}}"
-                    alt="image">
-            </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-           {{item.item_description}}
-        </mat-card-content>
-    </mat-card>
-</div>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>{{item.item_name}}</mat-card-title>
+                    <mat-card-subtitle>{{item.item_price}}</mat-card-subtitle>
+                    <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                {{item.item_description}}
+            </mat-card-content>
+        </mat-card>
 
+    </mat-grid-tile>
 
-<button (click)="onSubmit()">Click me!</button>
+</mat-grid-list>

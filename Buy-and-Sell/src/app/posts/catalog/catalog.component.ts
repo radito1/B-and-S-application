@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/shared/crud/crud.service';
+import { CrudService } from 'src/app/shared/services/crud/crud.service';
 import { Item } from 'src/app/shared/models/item';
 
 @Component({
@@ -16,10 +16,6 @@ export class CatalogComponent implements OnInit{
       this.crudService.getAll().subscribe((items: Item[]) => {
       this.items = items;
     })    
-}
-
-onSubmit(){
-  console.log(this.items)
 }
 
 }

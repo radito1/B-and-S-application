@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
+import { User } from '../../models/user';
+
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { User } from '../models/user';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+
 import { from } from 'rxjs';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class AuthService {
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    public afs: AngularFirestore
+    private db: AngularFireDatabase,
   ) {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
@@ -29,16 +28,6 @@ export class AuthService {
     });
   }
 
-  // register(email: string, password: string, username: string) {
-  //   return this.firebaseAuth.createUserWithEmailAndPassword(email, password).then((result)=>{
-  //     console.log(result.user);
-  //   } );
-  // }
-
-  // login(email: string, password: string) {
-  //   return from(this.firebaseAuth.signInWithEmailAndPassword(email, password));
-  // }
-
   logout() {
     return from(this.firebaseAuth.signOut());
   }
@@ -47,7 +36,7 @@ export class AuthService {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
+      this.SetUserData(result.user);
       })
       .catch((error) => {
         window.alert(error.message);
@@ -78,20 +67,14 @@ export class AuthService {
   }
 
   SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
+    const userRef = this.db.object(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
+      // Add other properties as needed
     };
-    return userRef.set(userData, {
-      merge: true,
-    });
+    return userRef.set(userData);
   }
-
-
 }
