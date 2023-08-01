@@ -10,10 +10,13 @@ import { MatCommonModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatDividerModule} from '@angular/material/divider'
 
 @NgModule({
-  declarations: [AddPostComponent, CatalogComponent],
+  declarations: [AddPostComponent, CatalogComponent, PostDetailsComponent],
   imports: [
     CommonModule,
     PostRoutingModule,
@@ -23,7 +26,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatProgressSpinnerModule,
+    MatDividerModule
   ],
 })
 export class PostsModule {}

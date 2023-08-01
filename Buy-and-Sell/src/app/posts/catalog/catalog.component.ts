@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 import { Item } from 'src/app/shared/models/item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -10,12 +11,12 @@ import { Item } from 'src/app/shared/models/item';
 export class CatalogComponent implements OnInit{
   // @ts-ignore
   items: Item[];
-  constructor(private crudService: CrudService) {}
+  constructor(private crudService: CrudService,private router: Router) {}
   
   ngOnInit(): void {  
       this.crudService.getAll().subscribe((items: Item[]) => {
       this.items = items;
-    })    
+    });    
 }
 
 }

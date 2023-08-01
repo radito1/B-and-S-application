@@ -4,9 +4,9 @@
             <mat-icon>home</mat-icon>
             Home
         </button>
-    
+
         <button mat-button routerLink="/catalog">
-            
+
             Catalog
         </button>
         <ng-container *ngIf="isLoggedIn">
@@ -16,17 +16,23 @@
         </ng-container>
     </div>
     Buy & Sell
-    <!-- <div class="logo-fit">
-        <img src="../../../assets/Buy & Sell-logo.png" alt="B&S logo">
-    </div> -->
 
     <div>
-        <ng-container *ngIf="isLoggedIn">
+        <ng-container *ngIf="user$ | async as user">
+            <button mat-button [matMenuTriggerFor]="userMenu">
+                <img width="30" height="30" class="profile-image-toolbar"
+                    [src]="user.imageUrl ?? '../../../assets/default-user-photo.png'" />
+                {{ user.displayName }}
+                <mat-icon>expand_more</mat-icon>
+            </button>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="isLoggedIn">
             <button mat-button (click)="logout()">
                 <mat-icon>logut</mat-icon>
                 Logout
             </button>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container *ngIf="!isLoggedIn">
             <button mat-button routerLink="login">
@@ -40,23 +46,29 @@
         </ng-container>
     </div>
 </mat-toolbar>
-<hr class="hr-fix">
 
-<!-- <mat-toolbar color="primary" class="second-nav">
-    <mat-toolbar-row>
-        <button mat-basic-button routerLink="/home">
-            <mat-icon>home</mat-icon>
-            Home
-        </button>
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item routerLink="/profile">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+    </button>
 
-        <button mat-basic-button routerLink="/catalog">
-            
-            Catalog
-        </button>
-        <ng-container *ngIf="isLoggedIn">
-            <button mat-basic-button routerLink="/add-item">
-                Add item
-            </button>
-        </ng-container>
-    </mat-toolbar-row>
-</mat-toolbar> -->
+    <button mat-menu-item routerLink="/profile-edit">
+        <mat-icon>edit_profile</mat-icon>
+        Edit-profile
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item routerLink="/profile">
+        <mat-icon>collections</mat-icon>
+        My posts
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+    </button>
+</mat-menu>

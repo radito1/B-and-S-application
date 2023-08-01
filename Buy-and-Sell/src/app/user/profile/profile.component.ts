@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  user$ = this.usersService.currentUserProfile$;
+
   profileForm = this.fb.group({
     uid: [''],
     displayName: [''],
@@ -17,6 +20,7 @@ export class ProfileComponent {
   });
 
   constructor(    
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private usersService: UserService
   ) {}
 }

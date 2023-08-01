@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 // import { AuthActivate } from '../core/guards/auth.activate';
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    // canActivate: [AuthActivate],
+  },
+  {
+    path: 'profile-edit',
+    component: ProfileEditComponent,
     // canActivate: [AuthActivate],
   },
 ];

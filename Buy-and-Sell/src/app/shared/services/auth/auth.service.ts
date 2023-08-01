@@ -4,17 +4,19 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-import { from } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  currentUser$ = this.firebaseAuth.authState;
+  
   userData: any;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private db: AngularFireDatabase,
+    private db: AngularFireDatabase
   ) {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
@@ -32,11 +34,11 @@ export class AuthService {
     return from(this.firebaseAuth.signOut());
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, username:string) {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-      this.SetUserData(result.user);
+        this.SetUserData(result.user, username);
       })
       .catch((error) => {
         window.alert(error.message);
@@ -46,15 +48,14 @@ export class AuthService {
   login(email: string, password: string) {
     return this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SetUserData(result.user);
+      .then(() => {        
         this.firebaseAuth.authState.subscribe(() => {});
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
-  
+
   logOut() {
     return this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
@@ -63,18 +64,21 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null ? true: false;
+    return user !== null ? true : false;
   }
 
-  SetUserData(user: any) {
+  SetUserData(user: any, username: string) {
     const userRef = this.db.object(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
+      listedItems: [],
+      displayName: username,
+      // photoURL: user.photoURL,
       // Add other properties as needed
     };
     return userRef.set(userData);
   }
+  
+  
 }

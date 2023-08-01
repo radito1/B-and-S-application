@@ -32,10 +32,12 @@ export class AddPostComponent implements OnInit {
 
     const { item_name, item_price, item_imageUrl, item_description } =
       this.addItemForm.value;
-      
+
+    //TODO : make model for the Item that is posted!
     let item: any = { item_name, item_price, item_imageUrl, item_description };
 
     this.crudService.create(item);
-    this.router.navigate(['/']);
+
+    this.router.navigate(['/catalog']);
   }
 }
