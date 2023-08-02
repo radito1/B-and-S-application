@@ -1,0 +1,36 @@
+<div class=" form-container catalog-container mat-elevation-z5">
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let item of userItems">
+
+            <mat-card class="card" [routerLink]="['/post-details/', item.item_id]">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{item.item_name}}</mat-card-title>
+                        <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
+
+                        <div class="image-container">
+                            <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
+                        </div>
+                    </mat-card-title-group>
+                </mat-card-header>
+                <div class="button-container">
+
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary">Edit</button>
+                        <button mat-raised-button color="warn">Delete</button>
+                    </mat-card-actions>
+                </div>
+            </mat-card>
+
+        </mat-grid-tile>
+
+        <div *ngIf="userItems.length === 0">
+                
+                <div class="message-container">
+                    <h2>You have no posts yet!</h2>
+                </div>
+            
+            </div>
+    </mat-grid-list>
+
+</div>

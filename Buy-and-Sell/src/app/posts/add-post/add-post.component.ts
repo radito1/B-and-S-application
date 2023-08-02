@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
-import { Item } from 'src/app/shared/models/item';
+
 
 @Component({
   selector: 'app-add-post',

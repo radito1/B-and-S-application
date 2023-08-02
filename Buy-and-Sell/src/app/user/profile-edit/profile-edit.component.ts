@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./profile-edit.component.css'],
 })
 export class ProfileEditComponent {
-  user$ = this.usersService.currentUserProfile$;
+  user$ = this.userService.currentUserProfile$;
 
   editProfileForm = this.fb.group({
     displayName: [''],
@@ -25,7 +25,7 @@ export class ProfileEditComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usersService: UserService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -35,10 +35,10 @@ export class ProfileEditComponent {
     }
 
     const updatedProfileData = this.editProfileForm.value;
-
-    this.usersService.currentUserProfile$.pipe(take(1)).subscribe((user) => {
+    
+    this.userService.currentUserProfile$.pipe(take(1)).subscribe((user) => {
       if (user && user.uid) {
-        this.usersService
+        this.userService
           .updateUserProfile(updatedProfileData, user.uid)
           .subscribe(() => {
             this.router.navigate([`/profile`]);

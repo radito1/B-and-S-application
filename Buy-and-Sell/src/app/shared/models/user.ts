@@ -1,11 +1,12 @@
 export interface User {
   uid: string;
-  email?: string;
+  email?: string | null;
   firstName?: string;
-  lastName?:string;
-  address?:string;
+  lastName?: string;
+  address?: string;
   displayName: string;
   imageUrl?: string;
   phoneNumber?: string;
-  listedItems?: string[];
+  listedItems?: string[] | undefined;
+  description?: string;
 }

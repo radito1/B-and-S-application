@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, map, switchMap } from 'rxjs';
+import { Observable, combineLatest, flatMap, map, switchMap, take } from 'rxjs';
 import { Item } from '../../models/item';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -37,6 +37,7 @@ export class CrudService {
     //TODO this might not work as intended! :D
     this.db.list(`users/${currentUser.uid}/listedItems`).push(newItemId);
   }
+
 
   update(key: string, value: any): Promise<void> {
     return this.db.list('items').update(key, value);

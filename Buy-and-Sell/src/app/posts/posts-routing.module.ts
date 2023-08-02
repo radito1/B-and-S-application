@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddPostComponent } from './add-post/add-post.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { UserPostsComponent } from './user-posts/user-posts.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'post-details/:postId',
     component: PostDetailsComponent,
+    //     // canActivate: [AuthActivate],
+  },
+  {
+    path: 'user-posts',
+    component: UserPostsComponent,
     //     // canActivate: [AuthActivate],
   },
 ];

@@ -4,7 +4,7 @@ import { Observable, from, of, switchMap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class UserService {
   constructor(
     private authService: AuthService,
-    private db: AngularFireDatabase,
-    private afAuth: AngularFireAuth
+    private db: AngularFireDatabase,    
   ) {}
 
   get currentUserProfile$(): Observable<User | null> {
@@ -64,7 +63,11 @@ export class UserService {
 
     if (user.phone) {
       updateFields.phone = user.phone;
-    }    
+    }
+    
+    if (user.description) {
+      updateFields.description = user.description;
+    } 
 
     return from(this.db.object(`users/${userId}`).update(updateFields));
   }

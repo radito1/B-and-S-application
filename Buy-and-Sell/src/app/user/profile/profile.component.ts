@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -9,18 +8,8 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 })
 export class ProfileComponent {
   user$ = this.usersService.currentUserProfile$;
-
-  profileForm = this.fb.group({
-    uid: [''],
-    displayName: [''],
-    firstName: [''],
-    lastName: [''],
-    phone: [''],
-    address: [''],
-  });
-
-  constructor(    
-    private fb: FormBuilder,
+  
+  constructor(
     private usersService: UserService
   ) {}
 }
