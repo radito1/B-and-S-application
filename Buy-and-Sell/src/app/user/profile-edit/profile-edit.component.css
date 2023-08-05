@@ -24,3 +24,14 @@
     display: flex;
     gap: 16px;
 }
+
+.description-container {
+    height: 200px;
+}
+
+textarea{
+    min-height:150px;
+    max-height:250px;
+    min-width:100%;
+    max-width:100%;
+}

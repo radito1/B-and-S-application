@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 
 
@@ -33,7 +34,7 @@ export class AddPostComponent implements OnInit {
     const { item_name, item_price, item_imageUrl, item_description } =
       this.addItemForm.value;
 
-    //TODO : make model for the Item that is posted!
+    
     let item: any = { item_name, item_price, item_imageUrl, item_description };
 
     this.crudService.create(item);

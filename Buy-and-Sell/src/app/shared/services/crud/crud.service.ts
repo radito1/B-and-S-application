@@ -3,7 +3,6 @@ import { Observable, combineLatest, flatMap, map, switchMap, take } from 'rxjs';
 import { Item } from '../../models/item';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -39,8 +38,8 @@ export class CrudService {
   }
 
 
-  update(key: string, value: any): Promise<void> {
-    return this.db.list('items').update(key, value);
+  updateItem(itemId: string, updatedData: any): Promise<void> {
+    return this.db.object(`items/${itemId}`).update(updatedData);
   }
 
   delete(key: string): Promise<void> {

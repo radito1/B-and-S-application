@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AddPostComponent } from './add-post/add-post.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,11 @@ const routes: Routes = [
   {
     path: 'user-posts',
     component: UserPostsComponent,
+    //     // canActivate: [AuthActivate],
+  },
+  {
+    path: 'post-edit/:postId',
+    component: PostEditComponent,
     //     // canActivate: [AuthActivate],
   },
 ];

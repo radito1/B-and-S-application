@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
@@ -13,9 +12,10 @@ import { PostsModule } from './posts/posts.module';
 import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -26,6 +26,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     CoreModule,
     UserModule,
     PostsModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,14 +1,14 @@
 <div class="form-container mat-elevation-z5">
-    <h1>Add Item</h1>
-    <form [formGroup]="addItemForm" (ngSubmit)="postItem()">
+    <h1>Edit Item</h1>
+    <form [formGroup]="editItemForm" *ngIf="item" (ngSubmit)="onSubmit()">
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput type="text"  name="name" placeholder="name" formControlName = "item_name" />
+            <input matInput type="text"  name="name" value="{{item.item_name}}" formControlName = "item_name" />
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Price</mat-label>
-            <input matInput type="text"  name="price" placeholder="price" formControlName = "item_price" />
+            <input matInput type="text"  name="price" placeholder="price" formControlName = "item_price"/>
         </mat-form-field>
 
         <mat-form-field>
@@ -23,7 +23,7 @@
 
         <div class="center margin-top">
             <button mat-raised-button color="primary" type="submit" >
-                Post
+                Edit
             </button>
         </div>      
         

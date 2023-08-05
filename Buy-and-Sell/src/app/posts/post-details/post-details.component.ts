@@ -19,8 +19,7 @@ export class PostDetailsComponent implements OnInit {
     private crudService: CrudService,
     private userService: UserService,
   ) {}
-
-  //TODO details page does not load until page refresh!
+  
   ngOnInit() {
     this.renderPost();
   }
