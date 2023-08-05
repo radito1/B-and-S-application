@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/shared/models/item';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 
+
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
@@ -17,7 +18,7 @@ export class PostEditComponent implements OnInit {
     private fb: FormBuilder,
     private crudService: CrudService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router,    
   ) {}
 
   editItemForm = this.fb.group({
@@ -52,16 +53,16 @@ export class PostEditComponent implements OnInit {
       return;
     }
 
-    // Get the updated values from the form
     const updatedData = this.editItemForm.value;
 
-    // Update the item using the API service
-    this.crudService.updateItem(this.itemId, updatedData).then(() => {
-      this.router.navigate(['/post-details', this.itemId]);
-    })
-    .catch(error => {
-      console.error('Error updating item:', error);
-      // Handle error if needed
-    });
+    this.crudService
+      .updateItem(this.itemId, updatedData)
+      .then(() => {
+        this.router.navigate(['/post-details', this.itemId]);
+      })
+      .catch((error) => {
+        console.error('Error updating item:', error);
+      });
   }
+  
 }

@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostRoutingModule } from './posts-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SmallComponentsModule } from '../shared/small-components/small-components.module';
 
 import { AddPostComponent } from './add-post/add-post.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCommonModule } from '@angular/material/core';
@@ -17,7 +19,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
-import { PostEditComponent } from './post-edit/post-edit.component';
+import {MatDialogModule} from '@angular/material/dialog'; 
 
 @NgModule({
   declarations: [
@@ -41,6 +43,9 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     MatProgressSpinnerModule,
     MatDividerModule,
     MatSliderModule,
+    SmallComponentsModule,
+    MatDialogModule
+    
   ],
   exports: [UserPostsComponent,UserPostsComponent],
 })

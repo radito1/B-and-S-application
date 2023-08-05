@@ -42,8 +42,8 @@ export class CrudService {
     return this.db.object(`items/${itemId}`).update(updatedData);
   }
 
-  delete(key: string): Promise<void> {
-    return this.db.list('items').remove(key);
+  deleteItem(itemId: string): Promise<void> {
+    return this.db.object(`items/${itemId}`).remove();
   }
 
   getItemById(itemId: string): Observable<Item | null> {

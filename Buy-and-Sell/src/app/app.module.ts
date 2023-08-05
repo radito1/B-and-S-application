@@ -8,11 +8,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
 import { PostsModule } from './posts/posts.module';
+import { SmallComponentsModule } from './shared/small-components/small-components.module';
 
 import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { HomeModule } from './pages/home/home.module';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';import { HomeModule } from './pages/home/home.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { HomeModule } from './pages/home/home.module';
     CoreModule,
     UserModule,
     PostsModule,
-    HomeModule
+    HomeModule,
+    SmallComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

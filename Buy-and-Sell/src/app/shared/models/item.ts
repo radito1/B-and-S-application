@@ -1,5 +1,5 @@
 export interface Item {
-  item_id: string | null;
+  item_id: string;
   owner_id: string;
   item_name: string;
   item_price: string;

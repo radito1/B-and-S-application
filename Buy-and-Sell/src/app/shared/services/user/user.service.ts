@@ -75,4 +75,8 @@ export class UserService {
   getUserById(userId: string): Observable<User | null> {
     return this.db.object<User>(`users/${userId}`).valueChanges();
   }
+
+  updateUserListedItems(userId: string, updatedListedItems: string[]): void {
+    this.db.object(`users/${userId}`).update({ listedItems: updatedListedItems });
+  }
 }

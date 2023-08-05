@@ -7,6 +7,6 @@ export interface User {
   displayName: string;
   imageUrl?: string;
   phoneNumber?: string;
-  listedItems?: string[] | undefined;
+  listedItems: string[];
   description?: string;
 }
