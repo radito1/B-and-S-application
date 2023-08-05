@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 
-
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css'],
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent {
   constructor(
     private fb: FormBuilder,
     private crudService: CrudService,
@@ -24,8 +23,6 @@ export class AddPostComponent implements OnInit {
     item_description: ['', [Validators.required]],
   });
 
-  ngOnInit(): void {}
-
   postItem(): void {
     if (this.addItemForm.invalid) {
       return;
@@ -34,8 +31,9 @@ export class AddPostComponent implements OnInit {
     const { item_name, item_price, item_imageUrl, item_description } =
       this.addItemForm.value;
 
-    
-    let item: any = { item_name, item_price, item_imageUrl, item_description };
+    const item_name_lowercase = item_name?.toLowerCase();
+
+    let item: any = { item_name,item_name_lowercase, item_price, item_imageUrl, item_description };
 
     this.crudService.create(item);
 

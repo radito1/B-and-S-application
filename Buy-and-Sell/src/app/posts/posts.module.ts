@@ -9,6 +9,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostSearchComponent } from './post-search/post-search.component'; 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCommonModule } from '@angular/material/core';
@@ -19,7 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     PostDetailsComponent,
     UserPostsComponent,
     PostEditComponent,
+    PostSearchComponent,
     
   ],
   imports: [
@@ -44,7 +47,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDividerModule,
     MatSliderModule,
     SmallComponentsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
     
   ],
   exports: [UserPostsComponent,UserPostsComponent],

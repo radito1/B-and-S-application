@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, flatMap, map, switchMap, take } from 'rxjs';
+import { Observable, catchError, of, tap } from 'rxjs';
 import { Item } from '../../models/item';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -37,7 +37,6 @@ export class CrudService {
     this.db.list(`users/${currentUser.uid}/listedItems`).push(newItemId);
   }
 
-
   updateItem(itemId: string, updatedData: any): Promise<void> {
     return this.db.object(`items/${itemId}`).update(updatedData);
   }
@@ -50,26 +49,19 @@ export class CrudService {
     return this.db.object<Item>(`items/${itemId}`).valueChanges();
   }
 
-  // getItemWithOwnerById(itemId: string): Observable<any> {
-  //   // Get the item document from the 'items' collection
-  //   const itemDoc = this.db.object<Item>(`items/${itemId}`).valueChanges();
-
-  //   // Get the owner information from the 'users' collection based on the item's uid
-  //   const ownerInfo = itemDoc.pipe(
-  //     switchMap((item) =>
-  //       this.db.object<User>(`users/${item?.owner_id}`).valueChanges()
-  //     )
-  //   );
-
-  //   // Combine the item and owner information using combineLatest
-  //   return combineLatest([itemDoc, ownerInfo]).pipe(
-  //     map(([item, owner]) => {
-  //       // Merge the item and owner information into a single object
-  //       if (item) {
-  //       return { ...item, owner };
-  //       }
-  //       return null;
-  //     })
-  //   );
-  // }  
+  searchItemsByName(query: string): Observable<Item[]> {
+    const queryRef = this.db.list<Item>('items', (ref) =>
+      ref
+        .orderByChild('item_name_lowercase')
+        .startAt(query)
+        .endAt(query + '\uf8ff')
+    );
+    
+    return queryRef.valueChanges().pipe(
+      catchError((error) => {
+        console.error('Error fetching search results:', error);
+        return of([]); 
+      })
+    );
+  }
 }

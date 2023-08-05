@@ -6,6 +6,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostSearchComponent } from './post-search/post-search.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'post-edit/:postId',
     component: PostEditComponent,
+    //     // canActivate: [AuthActivate],
+  },
+  {
+    path: 'search',
+    component: PostSearchComponent,
     //     // canActivate: [AuthActivate],
   },
 ];

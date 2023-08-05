@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/shared/models/item';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 
-
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
@@ -18,7 +17,7 @@ export class PostEditComponent implements OnInit {
     private fb: FormBuilder,
     private crudService: CrudService,
     private route: ActivatedRoute,
-    private router: Router,    
+    private router: Router
   ) {}
 
   editItemForm = this.fb.group({
@@ -49,11 +48,16 @@ export class PostEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editItemForm.invalid) {
+    if (this.editItemForm.invalid || !this.item) {
       return;
     }
 
-    const updatedData = this.editItemForm.value;
+    const updatedData = {
+      ...this.editItemForm.value,
+      item_name_lowercase: this.editItemForm.value.item_name
+        ? this.editItemForm.value.item_name.toLowerCase()
+        : '',
+    };
 
     this.crudService
       .updateItem(this.itemId, updatedData)
@@ -64,5 +68,4 @@ export class PostEditComponent implements OnInit {
         console.error('Error updating item:', error);
       });
   }
-  
 }

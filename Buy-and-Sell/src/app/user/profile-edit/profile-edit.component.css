@@ -35,3 +35,12 @@ textarea{
     min-width:100%;
     max-width:100%;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;    
+  }
+
+  button {
+  margin-left: 10px;
+  }

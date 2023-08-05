@@ -2,7 +2,7 @@
     <mat-grid-list cols="2" rowHeight="2:1">
         <mat-grid-tile *ngFor="let item of userItems">
 
-            <mat-card class="card" [routerLink]="['/post-details/', item.item_id]">
+            <mat-card class="card">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{item.item_name}}</mat-card-title>
@@ -14,7 +14,7 @@
                     </mat-card-title-group>
                 </mat-card-header>
                 <div class="button-container">
-
+    
                     <mat-card-actions>
                         <button mat-raised-button color="primary" [routerLink]="['/post-edit/', item.item_id]">Edit</button>
                         
