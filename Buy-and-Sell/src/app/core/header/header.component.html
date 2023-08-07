@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="mat-toolbar" color="primary">
     <div>
         <button mat-button routerLink="/home">
             <mat-icon>home</mat-icon>
@@ -10,11 +10,11 @@
             Catalog
         </button>
 
-        
-            <button mat-button routerLink="/search">
-                Search
-            </button>
-        
+
+        <button mat-button routerLink="/search">
+            Search
+        </button>
+
         <ng-container *ngIf="isLoggedIn">
             <button mat-button routerLink="/add-item">
                 Add item
@@ -25,28 +25,32 @@
     <div class="header-name">
         <p>Buy & Sell</p>
     </div>
-    
 
-    <div>
-        <ng-container *ngIf="user$ | async as user">
-            <button mat-button [matMenuTriggerFor]="userMenu">
-                <img width="30" height="30" class="profile-image-toolbar"
-                    [src]="user.imageUrl?? '../../../assets/default-user-photo.png'" />
-                    {{ user.displayName }}               
-                <mat-icon>expand_more</mat-icon>
-            </button>
-        </ng-container>
 
-        <ng-container *ngIf="!isLoggedIn">
-            <button mat-button routerLink="login">
-                <mat-icon>login</mat-icon>
-                Login
-            </button>
+    <div class="login-register-buttons">
+        <div>
+            <ng-container *ngIf="user$ | async as user">
+                <button class="usermenu" [matMenuTriggerFor]="userMenu">
+                    <img class="profile-image-toolbar"
+                        [src]="user.imageUrl?? '../../../assets/default-user-photo.png'" />
+                    <div>
+                        {{ user.displayName }}
+                    </div>
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+            </ng-container>
 
-            <button mat-button routerLink="register">
-                Register
-            </button>
-        </ng-container>
+            <ng-container *ngIf="!isLoggedIn">
+                <button mat-button routerLink="login">
+                    <mat-icon>login</mat-icon>
+                    Login
+                </button>
+
+                <button mat-button routerLink="register">
+                    Register
+                </button>
+            </ng-container>
+        </div>
     </div>
 </mat-toolbar>
 
