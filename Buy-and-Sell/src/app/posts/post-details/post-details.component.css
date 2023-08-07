@@ -4,17 +4,12 @@
 }
 
 .example-card {    
-    max-width: 400px;
-}
-
-img {
-    max-width: 400px;
-    max-height: 200px;
+    max-width: 700px;
 }
 
 .post-image{
-    width: 200px;
-    height: 200px;
+    width: 350px;
+    height: 350px;
     margin: 0 auto;
 }
 
@@ -25,4 +20,9 @@ img {
 .button-container {
     display: flex;
     justify-content: center;
+}
+
+.description-devider{
+    margin: 8px 0;
+    
 }
