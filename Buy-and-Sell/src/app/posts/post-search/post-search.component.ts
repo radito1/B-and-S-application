@@ -9,6 +9,7 @@ import { CrudService } from 'src/app/shared/services/crud/crud.service';
 })
 export class PostSearchComponent {
   searchResults: any[] = [];
+  showNoResultMessage = false;
 
   constructor(private crudService: CrudService, private fb: FormBuilder) {}
 
@@ -25,6 +26,8 @@ export class PostSearchComponent {
       this.crudService.searchItemsByName(lowercaseQuery).subscribe(
         (results) => {
           this.searchResults = results;
+          this.showNoResultMessage = results.length === 0;
+          this.searchForm.get('search')?.reset();
         },
         (error) => {
           console.error('Error fetching search results:', error);
@@ -32,6 +35,7 @@ export class PostSearchComponent {
       );
     } else {
       this.searchResults = [];
+      this.showNoResultMessage = false
     }
   }
 }

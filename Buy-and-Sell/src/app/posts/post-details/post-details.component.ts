@@ -14,6 +14,8 @@ export class PostDetailsComponent implements OnInit {
   item: Item | null = null;
   owner: User | null = null;
 
+  user$ = this.userService.currentUserProfile$;
+
   constructor(
     private route: ActivatedRoute,
     private crudService: CrudService,

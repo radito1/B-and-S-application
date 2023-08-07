@@ -1,11 +1,11 @@
 <div class="card-content" *ngIf="item && owner">
     <mat-card class="example-card">
         <mat-card-header>
-            <img mat-card-avatar src="../../../assets/default-user-photo.png">
+            <img mat-card-avatar [src]="owner.imageUrl?? '../../../assets/default-user-photo.png'">
             <mat-card-title class="owner-name">{{owner.displayName}}</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <img mat-card-image src='{{item.item_imageUrl}}' alt="image">
+        <img class="post-image" src='{{item.item_imageUrl}}' alt="image">
 
         <mat-card-content>
             <h1>{{item.item_name}}</h1>
@@ -16,7 +16,7 @@
             </p>
         </mat-card-content>
 
-        <div class="button-container">
+        <div class="button-container" *ngIf="user$ | async as user">
             <mat-card-actions>
                 <button mat-raised-button color="primary">Buy</button>               
             </mat-card-actions>

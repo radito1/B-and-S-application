@@ -13,6 +13,8 @@ import { SmallComponentsModule } from './shared/small-components/small-component
 import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';import { HomeModule } from './pages/home/home.module';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';import
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireModule,
     AppRoutingModule,

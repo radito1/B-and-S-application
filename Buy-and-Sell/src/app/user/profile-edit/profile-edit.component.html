@@ -2,14 +2,14 @@
     <h1>Edit Profile</h1>
     <div class="profile-image">
         <img width="120" height="120" class="margin-top mat-elevation-z1"
-            src="../../../assets/default-user-photo.png" />
+            [src]="user.imageUrl ?? '../../../assets/default-user-photo.png'" />
         <button mat-mini-fab (click)="inputField.click()">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
-    <input #inputField hidden type="file" />
+    <input #inputField hidden type="file"  (change)="selectFile($event)"/>
 
-    <form class="margin-top" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <form class="margin-top" [formGroup]="editProfileForm" (ngSubmit)="upload()" >
         <div class="row">
             <mat-form-field>
                 <input type="text" matInput formControlName="firstName" placeholder="First Name" />

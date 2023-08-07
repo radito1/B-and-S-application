@@ -10,6 +10,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
   providedIn: 'root',
 })
 export class UserService {
+
   constructor(
     private authService: AuthService,
     private db: AngularFireDatabase,    
@@ -78,5 +79,11 @@ export class UserService {
 
   updateUserListedItems(userId: string, updatedListedItems: string[]): void {
     this.db.object(`users/${userId}`).update({ listedItems: updatedListedItems });
+  }
+  
+
+  updateUser(user: User, updatedData: Partial<User>): Observable<void> {
+    const userRef = this.db.object(`/users/${user.uid}`);
+    return from(userRef.update(updatedData));
   }
 }

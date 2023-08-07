@@ -3,16 +3,16 @@
     <mat-grid-tile *ngFor="let item of items">
 
         <mat-card class="card" [routerLink]="['/post-details/', item.item_id]" >
-            <mat-card-header>
-                <mat-card-title-group>
+            
+                
                     <mat-card-title>{{item.item_name}}</mat-card-title>
                     <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
                     
                     <div class="image-container">
                         <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
                     </div>
-                </mat-card-title-group>
-            </mat-card-header>
+                
+            
             
         </mat-card>
 

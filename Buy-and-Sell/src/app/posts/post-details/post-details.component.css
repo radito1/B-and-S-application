@@ -12,6 +12,12 @@ img {
     max-height: 200px;
 }
 
+.post-image{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
 .owner-name {
     margin-top: 10px;
 }

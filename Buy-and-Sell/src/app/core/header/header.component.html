@@ -21,13 +21,17 @@
             </button>
         </ng-container>
     </div>
-    Buy & Sell
+
+    <div class="header-name">
+        <p>Buy & Sell</p>
+    </div>
+    
 
     <div>
         <ng-container *ngIf="user$ | async as user">
             <button mat-button [matMenuTriggerFor]="userMenu">
                 <img width="30" height="30" class="profile-image-toolbar"
-                    [src]="user.imageUrl ?? '../../../assets/default-user-photo.png'" />
+                    [src]="user.imageUrl?? '../../../assets/default-user-photo.png'" />
                     {{ user.displayName }}               
                 <mat-icon>expand_more</mat-icon>
             </button>

@@ -1,9 +1,9 @@
 <div class="form-container mat-elevation-z5">
     <div class="search-container">
         <form [formGroup]="searchForm" class="form">
-            <mat-form-field>
+            <mat-form-field class="inputfield">
                 <mat-label>Search by name</mat-label>
-                <input matInput class="inputfield" placeholder="Search by name" formControlName="search" />
+                <input matInput  placeholder="Search by name" formControlName="search" />
             </mat-form-field>
 
             <button mat-raised-button color="primary" (click)="searchItems()">
@@ -13,24 +13,36 @@
         </form>
 
         <div class="result-container">
-            <div class="search-result" *ngFor="let item of searchResults">
-                <mat-card [routerLink]="['/post-details/', item.item_id]">
+            <ng-container *ngIf="searchResults.length > 0 ">
+                <div class="search-result" *ngFor="let item of searchResults">
+                    <mat-card [routerLink]="['/post-details/', item.item_id]">
 
-                    <mat-card-header>
-                        <mat-card-title-group>
-                            <mat-card-title>{{item.item_name}}</mat-card-title>
-                            <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
+                        <mat-card-header>
+                            <mat-card-title-group>
+                                <mat-card-title>{{item.item_name}}</mat-card-title>
+                                <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
 
-                            <div class="image-container">
-                                <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
-                            </div>
-                        </mat-card-title-group>
-                    </mat-card-header>
+                                <div class="image-container">
+                                    <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
+                                </div>
+                            </mat-card-title-group>
+                        </mat-card-header>
 
 
-                </mat-card>
-            </div>
+                    </mat-card>
+                </div>
+            </ng-container>
         </div>
+        <ng-container *ngIf="showNoResultMessage">
+            <div>
+
+                <div class="message-container">
+                    <h2>We could't find anything!</h2>
+                </div>
+
+            </div>
+        </ng-container>
+
 
 
     </div>
