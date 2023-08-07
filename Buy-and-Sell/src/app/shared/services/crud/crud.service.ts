@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Item } from '../../models/item';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -49,19 +49,34 @@ export class CrudService {
     return this.db.object<Item>(`items/${itemId}`).valueChanges();
   }
 
-  searchItemsByName(query: string): Observable<Item[]> {
-    const queryRef = this.db.list<Item>('items', (ref) =>
-      ref
-        .orderByChild('item_name_lowercase')
-        .startAt(query)
-        .endAt(query + '\uf8ff')
-    );
+  // searchItemsByName(query: string): Observable<Item[]> {
+  //   const queryRef = this.db.list<Item>('items', (ref) =>
+  //     ref
+  //       .orderByChild('item_name_lowercase')
+  //       .startAt(query)
+  //       .endAt(query + '\uf8ff')
+  //   );
     
-    return queryRef.valueChanges().pipe(
+  //   return queryRef.valueChanges().pipe(
+  //     catchError((error) => {
+  //       console.error('Error fetching search results:', error);
+  //       return of([]); 
+  //     })
+  //   );
+  // }
+
+  searchItemsByName(query: string): Observable<Item[]> {
+    return this.db.list<Item>('items').valueChanges().pipe(
+      map(items => {
+        const lowerQuery = query.toLowerCase();
+        return items.filter(item => 
+          item.item_name_lowercase.includes(lowerQuery)
+        );
+      }),
       catchError((error) => {
         console.error('Error fetching search results:', error);
-        return of([]); 
+        return of([]);
       })
     );
-  }
+}
 }

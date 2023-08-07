@@ -18,10 +18,10 @@ export class PostSearchComponent {
   });
 
   searchItems(): void {
-    const query = this.searchForm.value.search; // Get the search value from the form
+    const query = this.searchForm.value.search; 
   
     if (query) {
-      const lowercaseQuery = query.toLowerCase(); // Convert the query to lowercase
+      const lowercaseQuery = query.toLowerCase();
   
       this.crudService.searchItemsByName(lowercaseQuery).subscribe(
         (results) => {
