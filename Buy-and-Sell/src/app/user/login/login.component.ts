@@ -35,17 +35,18 @@ export class LoginComponent implements OnInit {
   submit() {
     if (!this.loginForm.valid) {
       return;
-    }    
+    }
 
     this.authService
       .login(this.email.value, this.password.value)
       .then(() => {
-        this.snackBar.open('You logged in successfully!');
+        this.snackBar.open('You logged in successfully!', 'close');
         this.router.navigate(['/']);
       })
       .catch((err) => {
         this.snackBar.open(
-          'There was a problem while trying to log you in!'
+          'There was a problem while trying to log you in!',
+          'close'
         );
       });
   }

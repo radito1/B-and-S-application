@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthActivate } from '../shared/guard/auth.activate';
 
 import { AddPostComponent } from './add-post/add-post.component';
 import { CatalogComponent } from './catalog/catalog.component';
@@ -12,32 +13,27 @@ const routes: Routes = [
   {
     path: 'add-item',
     component: AddPostComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [AuthActivate]
   },
   {
     path: 'catalog',
-    component: CatalogComponent,
-    //     // canActivate: [AuthActivate],
+    component: CatalogComponent
   },
   {
     path: 'post-details/:postId',
-    component: PostDetailsComponent,
-    //     // canActivate: [AuthActivate],
+    component: PostDetailsComponent
   },
   {
     path: 'user-posts',
-    component: UserPostsComponent,
-    //     // canActivate: [AuthActivate],
+    component: UserPostsComponent
   },
   {
     path: 'post-edit/:postId',
-    component: PostEditComponent,
-    //     // canActivate: [AuthActivate],
+    component: PostEditComponent
   },
   {
     path: 'search',
-    component: PostSearchComponent,
-    //     // canActivate: [AuthActivate],
+    component: PostSearchComponent
   },
 ];
 
