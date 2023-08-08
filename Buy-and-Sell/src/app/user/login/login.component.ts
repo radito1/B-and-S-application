@@ -9,14 +9,11 @@ import { appEmailValidator } from 'src/app/shared/validators/email-validator';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, appEmailValidator()]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(5)]],
   });
 
   ngOnInit(): void {}
@@ -36,7 +33,6 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.loginForm.value;
 
-    this.authService
-      .login(email!, password!)
+    this.authService.login(email!, password!);
   }
 }
