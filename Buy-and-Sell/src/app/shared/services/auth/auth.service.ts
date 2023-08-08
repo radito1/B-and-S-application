@@ -34,7 +34,7 @@ export class AuthService {
     return from(this.firebaseAuth.signOut());
   }
 
-  register(email: string, password: string, username:string) {
+  register(email: string, password: string, username:string, repassword:string ) {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
