@@ -16,27 +16,26 @@ export class HeaderComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private usersService: UserService
+    private usersService: UserService,
   ) {}
 
-  ngOnInit(): void {}
-  logout() {
-    this.authService
-      .logOut()
-      .then(() => {
-        this.snackBar.open('Successful logout!', 'close');
-        this.router.navigate(['/']);
-      })
-      .catch((err) => {
-        this.snackBar.open(
-          'There was a problem while trying to logout!',
-          'close'
-        );
-      });
+  ngOnInit(): void {
+    
   }
+    logout() {
+      this.authService.logOut().then(()=>{
+        this.snackBar.open('Successful logout!');
+        this.router.navigate(['/']);
+      }).catch((err)=>{
+        this.snackBar.open('There was a problem while trying to logout!');
+      })
+    }
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null ? true : false;
+    return user !== null ? true: false;
   }
+
+  
+  
 }

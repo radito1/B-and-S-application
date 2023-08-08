@@ -7,33 +7,37 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostSearchComponent } from './post-search/post-search.component';
-import { AuthActivate } from '../shared/guard/auth.activate';
 
 const routes: Routes = [
   {
     path: 'add-item',
     component: AddPostComponent,
-    canActivate: [AuthActivate]
+    // canActivate: [AuthActivate],
   },
   {
     path: 'catalog',
-    component: CatalogComponent    
+    component: CatalogComponent,
+    //     // canActivate: [AuthActivate],
   },
   {
     path: 'post-details/:postId',
-    component: PostDetailsComponent    
+    component: PostDetailsComponent,
+    //     // canActivate: [AuthActivate],
   },
   {
     path: 'user-posts',
     component: UserPostsComponent,
+    //     // canActivate: [AuthActivate],
   },
   {
     path: 'post-edit/:postId',
-    component: PostEditComponent    
+    component: PostEditComponent,
+    //     // canActivate: [AuthActivate],
   },
   {
     path: 'search',
-    component: PostSearchComponent
+    component: PostSearchComponent,
+    //     // canActivate: [AuthActivate],
   },
 ];
 
