@@ -1,6 +1,6 @@
 <div class="form-container mat-elevation-z5">
     <h1>Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput placeholder="example@gmail.com" formControlName="email" />

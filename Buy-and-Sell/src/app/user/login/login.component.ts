@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-  submit() {
+  login() {
     if (!this.loginForm.valid) {
       return;
     }

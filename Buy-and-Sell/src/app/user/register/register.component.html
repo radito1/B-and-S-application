@@ -9,33 +9,61 @@
                     You must enter a username!
                 </mat-error>
                 <mat-error *ngIf="usernameControl?.errors?.['minlength']">
-                    Username should be at least 6 characters long!
+                    Username should be at least 5 characters long!
                 </mat-error>           
         </mat-form-field>   
-
     
         <mat-form-field >
             <mat-label>Email</mat-label>
             <input matInput type="text" [formControl]="emailControl" />
-            <mat-error *ngIf="emailControl.invalid">
+            <mat-error *ngIf="emailControl.errors?.['required']"> 
                 You must enter an email adress!
+            </mat-error>
+            <mat-error *ngIf="emailControl.errors?.['appEmailValidator']">
+                Please enter a valid email address!
             </mat-error>
         </mat-form-field>
         
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" [formControl]="passwordControl" />            
+            <input matInput type="password" name="password" [formControl]="passwordControl" />            
                 <mat-error *ngIf="passwordControl?.errors?.['required']">
-                    You must enter the password
+                    You must enter a password!
                 </mat-error>
                 <mat-error *ngIf="passwordControl?.errors?.['minlength']">
-                    Username should have at least 6 alhphanumeric characters
-                </mat-error>            
-        </mat-form-field>
+                    Password should have be least 5 characters long!
+                </mat-error>
+        </mat-form-field>     
+
+        <mat-form-field >
+            <mat-label>Repeat password</mat-label>
+            <input 
+                matInput
+                type="password"                
+                [formControl]="rePasswordControl"   
+                name="rePassword"
+                (invalid)="form.errors?.['passwordMismatch']" 
+            />          
+            <mat-error *ngIf="rePasswordControl?.errors?.['required']">
+                You must enter the password!
+            </mat-error>
+            <mat-error *ngIf="rePasswordControl?.errors?.['passwordMismatch']">
+                Passwords must match!
+            </mat-error>
+                <!-- <mat-error *ngIf="rePasswordControl?.errors?.['matchPasswordsValidator'] ||
+                rePasswordControl?.errors?.['required']">
+                    Repeat password should have be least 5 characters long!
+                </mat-error> -->
+        </mat-form-field>    
     
 
     <div class="center margin-top">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+        <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            [disabled]="!form.valid"            
+        >
             Register
         </button>
     </div>

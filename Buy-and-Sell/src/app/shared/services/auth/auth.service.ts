@@ -20,7 +20,7 @@ export class AuthService {
     private firebaseAuth: AngularFireAuth,
     private db: AngularFireDatabase,
     private snackBar: MatSnackBar,
-    private router: Router,
+    private router: Router
   ) {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
@@ -38,14 +38,24 @@ export class AuthService {
     return from(this.firebaseAuth.signOut());
   }
 
-  register(email: string, password: string, username: string) {
+  register(
+    email: string,
+    password: string,    
+    username: string
+  ) {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user, username);
+        this.snackBar.open('You registered successfuly!', 'close');
+        this.router.navigate(['/']);
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.snackBar.open(
+          'There was a problem while trying to register a new user',
+          'close'
+        );
+        console.log('There was an error trying to register:' + error);
       });
   }
 
@@ -55,14 +65,14 @@ export class AuthService {
       .then(() => {
         this.firebaseAuth.authState.subscribe(() => {});
         this.snackBar.open('You logged in successfully!', 'close');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       })
       .catch((error) => {
         this.snackBar.open(
           'There was a problem trying to log you in!',
           'close'
         );
-        console.log(error.message);
+        console.log('There was an error trying to login:' + error);
       });
   }
 
@@ -83,9 +93,7 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       listedItems: [],
-      displayName: username,
-      // photoURL: user.photoURL,
-      // Add other properties as needed
+      displayName: username      
     };
     return userRef.set(userData);
   }

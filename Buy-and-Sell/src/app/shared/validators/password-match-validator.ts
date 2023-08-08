@@ -1,16 +1,13 @@
-import { FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
-export function matchPasswordsValidator(
-  passwordCtrlOne: string,
-  passwordCtrlTwo: string
-): ValidatorFn {
-  return (control) => {
-    const group = control as FormGroup;
-    const passCtrl1 = group.get(passwordCtrlOne);
-    const passCtrl2 = group.get(passwordCtrlTwo);
+export function ComparePasswords(control: AbstractControl): { [key: string]: boolean } | null {
+  if (!control.parent) return null;
 
-    return passCtrl1?.value === passCtrl2?.value
-      ? null
-      : { matchPasswordsValidator: true };
-  };
-}
+  const password = control.parent.get('password');
+  const repeatPassword = control;
+
+  if (!password) return null;
+  if (password.value === repeatPassword.value) return null;
+
+  return { 'passwordMismatch': true };
+} 

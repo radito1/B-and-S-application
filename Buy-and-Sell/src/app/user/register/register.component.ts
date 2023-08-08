@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { appEmailValidator } from 'src/app/shared/validators/email-validator';
+import { ComparePasswords } from 'src/app/shared/validators/password-match-validator';
 
 @Component({
   selector: 'app-register',
@@ -16,14 +16,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private router: Router,
-  ) {}
-
   form!: FormGroup;
+
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   get usernameControl() {
     return this.form.get('username') as FormControl;
@@ -34,33 +29,26 @@ export class RegisterComponent implements OnInit {
   get emailControl() {
     return this.form.get('email') as FormControl;
   }
+  get rePasswordControl() {
+    return this.form.get('rePassword') as FormControl;
+  }
 
   ngOnInit(): void {
-    this.generateForm();
-  }
-  generateForm() {
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, appEmailValidator()]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      rePassword: ['', [Validators.required, ComparePasswords]],
     });
   }
 
   onSubmit() {
-    this.authService
-      .register(
-        this.emailControl.value,
-        this.passwordControl.value,
-        this.usernameControl.value
-      ).then(() => {
-        this.snackBar.open('You registered successfuly!');
-        this.router.navigate(['/']);
-      })
-      .catch((err) => {
-        this.snackBar.open(
-          'There was a problem while trying to sign up a new user'
-        );
-      });
-    
+    if (this.form.invalid) {
+      return;
+    }
+
+    const { username, email, password } = this.form.value;
+
+    this.authService.register(email, password, username);
   }
 }
