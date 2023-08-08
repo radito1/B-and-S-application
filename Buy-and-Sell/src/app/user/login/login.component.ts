@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { appEmailValidator } from 'src/app/shared/validators/email-validator';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +12,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
   ) {}
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, appEmailValidator()]],
     password: ['', Validators.required],
   });
 
@@ -37,17 +34,9 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    const { email, password } = this.loginForm.value;
+
     this.authService
-      .login(this.email.value, this.password.value)
-      .then(() => {
-        this.snackBar.open('You logged in successfully!', 'close');
-        this.router.navigate(['/']);
-      })
-      .catch((err) => {
-        this.snackBar.open(
-          'There was a problem while trying to log you in!',
-          'close'
-        );
-      });
+      .login(email!, password!)
   }
 }

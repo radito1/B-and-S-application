@@ -5,18 +5,22 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 import { Observable, from } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   currentUser$ = this.firebaseAuth.authState;
-  
+
   userData: any;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
@@ -34,7 +38,7 @@ export class AuthService {
     return from(this.firebaseAuth.signOut());
   }
 
-  register(email: string, password: string, username:string) {
+  register(email: string, password: string, username: string) {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -48,11 +52,17 @@ export class AuthService {
   login(email: string, password: string) {
     return this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then(() => {        
+      .then(() => {
         this.firebaseAuth.authState.subscribe(() => {});
+        this.snackBar.open('You logged in successfully!', 'close');
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.snackBar.open(
+          'There was a problem trying to log you in!',
+          'close'
+        );
+        console.log(error.message);
       });
   }
 
@@ -79,6 +89,4 @@ export class AuthService {
     };
     return userRef.set(userData);
   }
-  
-  
 }

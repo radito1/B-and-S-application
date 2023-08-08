@@ -3,12 +3,12 @@
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput placeholder="example@example.com" formControlName="email" />
+            <input matInput placeholder="example@gmail.com" formControlName="email" />
             <mat-error *ngIf="email?.errors?.['required']">
                 Email is required!
             </mat-error>
-            <mat-error *ngIf="email?.errors?.['email']">
-                Please enter a correct email address!
+            <mat-error *ngIf="email?.errors?.['appEmailValidator']">
+                Please enter a valid email address!
             </mat-error>
         </mat-form-field>
 
