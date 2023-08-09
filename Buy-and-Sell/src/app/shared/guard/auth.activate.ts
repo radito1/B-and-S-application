@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -10,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthActivate implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,6 +21,11 @@ export class AuthActivate implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return this.authService.isLoggedIn;
+    if(this.authService.isLoggedIn){
+      return true;
+    } else {
+      this.router.navigate(['/404']);
+      return false;
+    }
   }
 }

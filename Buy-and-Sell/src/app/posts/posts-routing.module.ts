@@ -8,6 +8,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostSearchComponent } from './post-search/post-search.component';
+import { ErrorPageComponent } from '../pages/error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,9 @@ const routes: Routes = [
     path: 'search',
     component: PostSearchComponent
   },
+  { path: '404', component: ErrorPageComponent },
+  { path: '**', redirectTo: '/404' }
+  
 ];
 
 @NgModule({

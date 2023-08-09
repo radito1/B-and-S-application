@@ -14,11 +14,12 @@ import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';import { HomeModule } from './pages/home/home.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ErrorPageComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),

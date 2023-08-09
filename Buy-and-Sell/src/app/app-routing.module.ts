@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './user/login/login.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomeComponent
+    redirectTo: '/home',
   },  
   {
     path: 'home',
     component: HomeComponent
-  }
+  },
+  { path: '*', component: ErrorPageComponent }
 
 ];
 
