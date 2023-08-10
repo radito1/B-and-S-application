@@ -9,7 +9,7 @@
     </div>
     <input #inputField hidden type="file" (change)="selectFile($event)"/>
 
-    <form class="margin-top" [formGroup]="editProfileForm" (ngSubmit)="upload()" >
+    <form class="margin-top" [formGroup]="editProfileForm"  >
         <div class="row">
             <mat-form-field>
                 <input type="text" matInput formControlName="firstName" placeholder="First Name" />
@@ -37,7 +37,7 @@
             </mat-form-field>
         </div>
 
-        <button type="submit" class="margin-top" mat-raised-button color="primary">
+        <button type="submit" class="margin-top" mat-raised-button color="primary" (click) ="upload()">
             Edit
         </button>
 
