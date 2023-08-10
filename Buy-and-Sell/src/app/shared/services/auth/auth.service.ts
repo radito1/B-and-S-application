@@ -93,4 +93,20 @@ export class AuthService {
     };
     return userRef.set(userData);
   }
+
+  async deleteUser() {
+    try {
+      const user = await this.firebaseAuth.currentUser;
+  
+      if (user) {
+        await user.delete();
+        localStorage.removeItem('user');
+        this.snackBar.open('Profile deleted successfully!', 'close');
+        this.router.navigate(['/']);
+      }
+    } catch (error) {
+      this.snackBar.open('There was an error trying to delete the profile!', 'close');
+      console.error('Error deleting user:', error);
+    }
+  }
 }

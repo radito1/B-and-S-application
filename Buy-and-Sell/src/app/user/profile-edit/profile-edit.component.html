@@ -36,13 +36,14 @@
                 <textarea type="text" matInput formControlName="description" placeholder="Description"></textarea>
             </mat-form-field>
         </div>
-
-        <button type="submit" class="margin-top" mat-raised-button color="primary" (click) ="upload()">
+        
+        <button type="button" class="margin-top" mat-raised-button color="primary" color="warn" (click)="onDelete()">
+            Delete
+        </button>
+        
+        <button type="submit" class="margin-top" mat-raised-button color="primary" (click)="upload()">
             Edit
         </button>
 
-        <button type="submit" class="margin-top" mat-raised-button color="primary" color="warn">
-            Delete
-        </button>
     </form>
 </div>

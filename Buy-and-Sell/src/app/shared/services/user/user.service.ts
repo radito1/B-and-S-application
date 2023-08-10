@@ -5,15 +5,13 @@ import { AuthService } from '../auth/auth.service';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-
   constructor(
     private authService: AuthService,
-    private db: AngularFireDatabase,    
+    private db: AngularFireDatabase
   ) {}
 
   get currentUserProfile$(): Observable<User | null> {
@@ -29,7 +27,6 @@ export class UserService {
   }
 
   updateUserProfile(user: any, userId: string): Observable<void> {
-
     const updateFields: any = {};
 
     // Check each field in the user object and add it to the updateFields object if it has a value
@@ -52,10 +49,10 @@ export class UserService {
     if (user.phone) {
       updateFields.phone = user.phone;
     }
-    
+
     if (user.description) {
       updateFields.description = user.description;
-    } 
+    }
 
     return from(this.db.object(`users/${userId}`).update(updateFields));
   }
@@ -65,11 +62,17 @@ export class UserService {
   }
 
   updateUserListedItems(userId: string, updatedListedItems: string[]): void {
-    this.db.object(`users/${userId}`).update({ listedItems: updatedListedItems });
-  }  
+    this.db
+      .object(`users/${userId}`)
+      .update({ listedItems: updatedListedItems });
+  }
 
   updateUser(user: User, updatedData: Partial<User>): Observable<void> {
     const userRef = this.db.object(`/users/${user.uid}`);
     return from(userRef.update(updatedData));
+  }
+
+  deleteUser(user: User): Promise<void> {
+    return this.db.object(`users/${user.uid}`).remove();
   }
 }
