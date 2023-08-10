@@ -33,7 +33,6 @@ export class CrudService {
 
     this.db.object<Item>(`items/${newItemId}`).set(item);
 
-    //TODO this might not work as intended! :D
     this.db.list(`users/${currentUser.uid}/listedItems`).push(newItemId);
   }
 
@@ -48,22 +47,6 @@ export class CrudService {
   getItemById(itemId: string): Observable<Item | null> {
     return this.db.object<Item>(`items/${itemId}`).valueChanges();
   }
-
-  // searchItemsByName(query: string): Observable<Item[]> {
-  //   const queryRef = this.db.list<Item>('items', (ref) =>
-  //     ref
-  //       .orderByChild('item_name_lowercase')
-  //       .startAt(query)
-  //       .endAt(query + '\uf8ff')
-  //   );
-    
-  //   return queryRef.valueChanges().pipe(
-  //     catchError((error) => {
-  //       console.error('Error fetching search results:', error);
-  //       return of([]); 
-  //     })
-  //   );
-  // }
 
   searchItemsByName(query: string): Observable<Item[]> {
     return this.db.list<Item>('items').valueChanges().pipe(

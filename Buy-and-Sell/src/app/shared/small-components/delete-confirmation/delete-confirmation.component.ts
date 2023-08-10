@@ -10,10 +10,10 @@ export class DeleteConfirmationComponent {
   constructor(private dialogRef: MatDialogRef<DeleteConfirmationComponent>) {}
 
   confirmDelete(): void {
-    this.dialogRef.close(true); // Signal that the user confirmed deletion
+    this.dialogRef.close(true); 
   }
 
   cancelDelete(): void {
-    this.dialogRef.close(false); // Signal that the user canceled deletion
+    this.dialogRef.close(false); 
   }
 }

@@ -1,22 +1,19 @@
-<div class=" form-container catalog-container mat-elevation-z5" >
-<mat-grid-list cols="2" rowHeight="2:1" >
-    <mat-grid-tile *ngFor="let item of items">
+<div class=" form-container catalog-container mat-elevation-z5">
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let item of items">
 
-        <mat-card class="card" [routerLink]="['/post-details/', item.item_id]" >
-            
-                
-                    <mat-card-title>{{item.item_name}}</mat-card-title>
-                    <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
-                    
-                    <div class="image-container">
-                        <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
-                    </div>
-                
-            
-            
-        </mat-card>
+            <mat-card class="card" [routerLink]="['/post-details/', item.item_id]">
 
-    </mat-grid-tile>
-</mat-grid-list>
+                <mat-card-title>{{item.item_name}}</mat-card-title>
+                <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
+
+                <div class="image-container">
+                    <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
+                </div>
+
+            </mat-card>
+
+        </mat-grid-tile>
+    </mat-grid-list>
 
 </div>

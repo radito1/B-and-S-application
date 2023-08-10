@@ -4,21 +4,36 @@
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput type="text"  name="name" placeholder="name" formControlName = "item_name" />
+            <mat-error *ngIf="itemName?.errors?.['required']">
+                Item name is required!
+            </mat-error>
+            <mat-error *ngIf="itemName?.errors?.['minLength']">
+                Item name must be at least 4 characters long!
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Price</mat-label>
             <input matInput type="text"  name="price" placeholder="price" formControlName = "item_price" />
+            <mat-error *ngIf="itemPrice?.errors?.['required']">
+                Item price is required!
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>ImageURL</mat-label>
             <input matInput type="text"  name="imageUrl" placeholder="imageUrl" formControlName = "item_imageUrl" />
+            <mat-error *ngIf="itemImageUrl?.errors?.['required']">
+                Item imageUrl is required!
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="description-container">
             <mat-label>Description</mat-label>
             <textarea matInput type="text"  name="Description" placeholder="Description" formControlName = "item_description"></textarea>
+            <mat-error *ngIf="itemDescription?.errors?.['minLength']">
+                Item description must be at least 6 characters long!
+            </mat-error>
         </mat-form-field>
 
         <div class="center margin-top">

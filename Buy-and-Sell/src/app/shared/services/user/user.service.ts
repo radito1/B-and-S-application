@@ -28,20 +28,7 @@ export class UserService {
     );
   }
 
-  // updateUser(user:any): Observable<void> {
-  //   return from(
-  //     this.db.object(`users/${user.uid}`).update(user)
-  //   );
-  // }
-
   updateUserProfile(user: any, userId: string): Observable<void> {
-
-    if (!userId) {
-      // Handle the case where the user is not logged in or invalid user data
-      // You can return an error Observable or handle this scenario as needed.
-      // For simplicity, let's return an empty observable here.
-      return new Observable<void>();
-    }
 
     const updateFields: any = {};
 
@@ -79,8 +66,7 @@ export class UserService {
 
   updateUserListedItems(userId: string, updatedListedItems: string[]): void {
     this.db.object(`users/${userId}`).update({ listedItems: updatedListedItems });
-  }
-  
+  }  
 
   updateUser(user: User, updatedData: Partial<User>): Observable<void> {
     const userRef = this.db.object(`/users/${user.uid}`);

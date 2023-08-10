@@ -6,7 +6,7 @@ export interface User {
   address?: string;
   displayName: string;
   imageUrl?: string;
-  phoneNumber?: string;
+  phone?: string;
   listedItems: string[];
   description?: string;
 }

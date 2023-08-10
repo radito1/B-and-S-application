@@ -15,7 +15,8 @@
                 {{item.item_description}}
             </p>
         </mat-card-content>
-
+        
+        <!-- TODO logged user and not owner -->
         <div class="button-container" *ngIf="user$ | async as user">
             <mat-card-actions>
                 <button mat-raised-button color="primary">Buy</button>               

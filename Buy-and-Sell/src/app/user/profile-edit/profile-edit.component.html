@@ -7,7 +7,7 @@
             <mat-icon>edit</mat-icon>
         </button>
     </div>
-    <input #inputField hidden type="file"  (change)="selectFile($event)"/>
+    <input #inputField hidden type="file" (change)="selectFile($event)"/>
 
     <form class="margin-top" [formGroup]="editProfileForm" (ngSubmit)="upload()" >
         <div class="row">

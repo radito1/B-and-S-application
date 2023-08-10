@@ -36,16 +36,14 @@ export class UserPostsComponent {
         this.userService.getUserById(authUser.uid).subscribe((user) => {
           this.currentUser = user;
 
-          // Check if currentUser and listedItems are both defined before proceeding
+          
           if (this.currentUser && this.currentUser.listedItems) {
-            // Convert the object of listed items to an array using Object.values()
             const listedItemsArray = Object.values(
               this.currentUser.listedItems
             ) as string[];
 
             this.fetchItems(listedItemsArray);
-          } else {
-            // Handle the case where the user has no listed items
+          } else {            
             this.userItems = [];
           }
         });
@@ -54,7 +52,7 @@ export class UserPostsComponent {
   }
 
   fetchItems(itemIds: string[]): void {
-    this.userItems = []; // Clear the previous items
+    this.userItems = []; 
     const itemObservables = itemIds.map((itemId) =>
       this.crudService.getItemById(itemId)
     );
@@ -68,8 +66,7 @@ export class UserPostsComponent {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // User confirmed deletion, proceed to delete the item
+      if (result) {       
         this.onDeleteItem(itemId);
       }
     });
@@ -77,11 +74,8 @@ export class UserPostsComponent {
 
   onDeleteItem(itemId: string): void {
     this.userService.currentUserProfile$.subscribe((user) => {
-      if (user && user.uid) {
-        // Remove the item's ID from the user's listedItems array       
+      if (user && user.uid) {      
         const updatedListedItems = Object.values(user.listedItems).filter(id => id !== itemId);
-          
-        // Update the user's listedItems array in the database
         this.userService.updateUserListedItems(user.uid, updatedListedItems);
 
         this.crudService
@@ -91,7 +85,6 @@ export class UserPostsComponent {
           })
           .catch((error) => {
             console.error('Error deleting item:', error);
-            // Handle error if needed
           });
       }
     });

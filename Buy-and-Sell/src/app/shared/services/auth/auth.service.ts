@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-import { Observable, from } from 'rxjs';
+import { from } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -32,10 +32,6 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
-  }
-
-  logout() {
-    return from(this.firebaseAuth.signOut());
   }
 
   register(

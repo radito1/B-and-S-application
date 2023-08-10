@@ -19,7 +19,7 @@
     font-size: 8.5rem;
     left: 42%;
     top: 15%;
-    color: #95c2de;
+    color: #283593;
   }
   
   .err2 {
@@ -43,9 +43,17 @@
   
   a {
     text-decoration: none;
-    color: #95c2de;
+    color: #283593;
   }
   
   a:hover {
     text-decoration: underline;
+  }
+
+  .image{
+    display: flex;
+    justify-content: center;
+    max-width: 350px;
+    max-height: 350px;
+
   }

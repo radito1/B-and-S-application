@@ -6,8 +6,23 @@
     </div>
     <mat-divider></mat-divider>
     <div class="margin-top names">
-        <p>{{user.firstName}}</p>
-        <p>{{user.lastName}}</p>
+        <div class="row">
+            <p >{{user.firstName}}</p>
+            <p >{{user.lastName}}</p>
+        </div>        
+    </div>
+
+    <div class="row margin-top">
+        <p class="contact-info">{{user.address}}</p>        
+    </div>
+
+    <div class="row margin-top">
+        <p class="contact-info">{{user.phone}}</p>
+        <p class="contact-info">{{user.email}}</p>
+    </div>
+
+    <div class="row margin-top">
+        <p>{{user.description}}</p>
     </div>
     
     <div >
