@@ -2,31 +2,31 @@
     <h1>Welcome {{user.displayName}}</h1>
     <div class="profile-image">
         <img width="120" height="120" class="margin-top mat-elevation-z1"
-        [src]="user.imageUrl?? '../../../assets/default-user-photo.png'" />
+            [src]="user.imageUrl?? '../../../assets/default-user-photo.png'" />
     </div>
     <mat-divider></mat-divider>
-    <div class="margin-top names">
-        <div class="row">
-            <p >{{user.firstName}}</p>
-            <p >{{user.lastName}}</p>
-        </div>        
+    <h3 class="margin-top">Full Name:</h3>
+    <div class="names">
+        <div class="row margin-top">
+            <p>{{user.firstName}}</p>
+            <p>{{user.lastName}}</p>
+        </div>
     </div>
 
+    <h3>Address:</h3>
     <div class="row margin-top">
-        <p class="contact-info">{{user.address}}</p>        
+        <p class="contact-info">{{user.address}}</p>
     </div>
 
+    <h3>Contact Info:</h3>
     <div class="row margin-top">
         <p class="contact-info">{{user.phone}}</p>
         <p class="contact-info">{{user.email}}</p>
     </div>
 
+    <h3>Description:</h3>
     <div class="row margin-top">
         <p>{{user.description}}</p>
     </div>
-    
-    <div >
-        {{user.description}}
-    </div>    
 
 </div>

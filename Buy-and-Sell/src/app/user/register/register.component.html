@@ -45,7 +45,7 @@
                 (invalid)="form.errors?.['passwordMismatch']" 
             />          
             <mat-error *ngIf="rePasswordControl?.errors?.['required']">
-                You must enter the password!
+                You must enter a password!
             </mat-error>
             <mat-error *ngIf="rePasswordControl?.errors?.['passwordMismatch']">
                 Passwords must match!
