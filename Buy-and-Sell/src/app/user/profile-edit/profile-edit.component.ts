@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { CrudService } from 'src/app/shared/services/crud/crud.service';
 import { FileUploadService } from 'src/app/shared/services/image-upload/image-upload.service';
 
 import { UserService } from 'src/app/shared/services/user/user.service';
-import { DeleteConfirmationComponent } from 'src/app/shared/small-components/delete-confirmation/delete-confirmation.component';
+import { ConfirmationComponent } from 'src/app/shared/small-components/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-profile-edit',
@@ -37,9 +37,9 @@ export class ProfileEditComponent {
     private userService: UserService,
     private uploadService: FileUploadService,
     private crudService: CrudService,
-    private authService : AuthService,
+    private authService: AuthService,
     private router: Router,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   selectedFiles?: FileList;
@@ -86,17 +86,22 @@ export class ProfileEditComponent {
     });
   }
 
-  openDeleteConfirmationDialog(): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        title: 'Delete User',
+        content: 'Are you sure you want to delete this user profile?',
+        action: 'Delete'
+      },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {       
+      if (result) {
         this.onDelete();
       }
     });
   }
 
-  
   //Delete user profile and clear all data about him.
 
   onDelete(): void {
@@ -107,14 +112,13 @@ export class ProfileEditComponent {
             this.crudService.deleteItem(id);
           });
         }
-        
+
         this.userService
-        .deleteUser(user)
-        .then(() => {            
-        })
-        .catch((error) => {
-          console.error('Error deleting item:', error);
-        });
+          .deleteUser(user)
+          .then(() => {})
+          .catch((error) => {
+            console.error('Error deleting item:', error);
+          });
 
         this.authService.deleteUser();
       }

@@ -6,16 +6,16 @@ import { LoaderComponent } from './loader/loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
-  declarations: [DeleteConfirmationComponent, LoaderComponent],
+  declarations: [ConfirmationComponent, LoaderComponent],
   imports: [
     CommonModule,
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
   ],
-  exports: [DeleteConfirmationComponent, LoaderComponent],
+  exports: [ConfirmationComponent, LoaderComponent],
 })
 export class SmallComponentsModule {}

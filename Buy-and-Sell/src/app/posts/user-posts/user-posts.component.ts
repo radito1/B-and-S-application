@@ -8,7 +8,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DeleteConfirmationComponent } from 'src/app/shared/small-components/delete-confirmation/delete-confirmation.component';
+import { ConfirmationComponent } from 'src/app/shared/small-components/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-user-posts',
@@ -63,8 +63,14 @@ export class UserPostsComponent {
     });
   }
 
-  openDeleteConfirmationDialog(itemId: string): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+  openConfirmationDialog(itemId: string): void {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        title: 'Delete Item',
+      content: 'Are you sure you want to delete this item?',
+      action: 'Delete'
+      }
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {       
