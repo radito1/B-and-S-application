@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { FileUpload } from 'src/app/shared/models/fileUpload';
@@ -8,6 +9,7 @@ import { CrudService } from 'src/app/shared/services/crud/crud.service';
 import { FileUploadService } from 'src/app/shared/services/image-upload/image-upload.service';
 
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { DeleteConfirmationComponent } from 'src/app/shared/small-components/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-profile-edit',
@@ -37,6 +39,7 @@ export class ProfileEditComponent {
     private crudService: CrudService,
     private authService : AuthService,
     private router: Router,
+    private dialog: MatDialog,
   ) {}
 
   selectedFiles?: FileList;
@@ -82,15 +85,28 @@ export class ProfileEditComponent {
       }
     });
   }
+
+  openDeleteConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {       
+        this.onDelete();
+      }
+    });
+  }
+
   
   //Delete user profile and clear all data about him.
 
   onDelete(): void {
     this.userService.currentUserProfile$.subscribe((user) => {
       if (user && user.uid) {
-        Object.values(user.listedItems).map((id) => {
-          this.crudService.deleteItem(id);
-        });
+        if (user.listedItems && user.listedItems.length > 0) {
+          Object.values(user.listedItems).map((id) => {
+            this.crudService.deleteItem(id);
+          });
+        }
         
         this.userService
         .deleteUser(user)

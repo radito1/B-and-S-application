@@ -5,9 +5,10 @@ import { User } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
-import { DeleteConfirmationComponent } from 'src/app/shared/small-components/delete-confirmation/delete-confirmation.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DeleteConfirmationComponent } from 'src/app/shared/small-components/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-user-posts',

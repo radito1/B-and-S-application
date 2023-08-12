@@ -47,8 +47,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSliderModule,
     SmallComponentsModule,
     MatDialogModule,
-    MatIconModule,
-    SmallComponentsModule,
+    MatIconModule    
   ],
   exports: [UserPostsComponent, UserPostsComponent],
 })

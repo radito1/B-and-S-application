@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { SmallComponentsModule } from '../shared/small-components/small-components.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     MatDividerModule,
     PostsModule,
+    SmallComponentsModule,
   ],
 })
 export class UserModule {}
