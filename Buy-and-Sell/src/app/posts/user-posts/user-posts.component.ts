@@ -81,9 +81,11 @@ export class UserPostsComponent {
 
   onDeleteItem(itemId: string): void {
     this.userService.currentUserProfile$.subscribe((user) => {
-      if (user && user.uid) {      
-        const updatedListedItems = Object.values(user.listedItems).filter(id => id !== itemId);
-        this.userService.updateUserListedItems(user.uid, updatedListedItems);
+      if (user && user.uid) {
+        if (user.listedItems && user.listedItems.length > 0){
+          const updatedListedItems = Object.values(user.listedItems).filter(id => id !== itemId);
+          this.userService.updateUserListedItems(user.uid, updatedListedItems);
+        }   
 
         this.crudService
           .deleteItem(itemId)
