@@ -10,12 +10,14 @@ import { Item } from 'src/app/shared/models/item';
 export class CatalogComponent implements OnInit {
   // @ts-ignore
   items: Item[];
+  isLoading = true;
+
   constructor(private crudService: CrudService,) {}
-  
   
   ngOnInit(): void {  
       this.crudService.getAll().subscribe((items: Item[]) => {
-      this.items = items;      
+      this.items = items;
+      this.isLoading = false;   
     });    
 }
 

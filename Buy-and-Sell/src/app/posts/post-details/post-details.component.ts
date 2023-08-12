@@ -15,6 +15,7 @@ import { ConfirmationComponent } from 'src/app/shared/small-components/confirmat
 export class PostDetailsComponent implements OnInit {
   item: Item | null = null;
   owner: User | null = null;
+  isLoading = true;
 
   user$ = this.userService.currentUserProfile$;
 
@@ -38,6 +39,7 @@ export class PostDetailsComponent implements OnInit {
         if (item) {
           this.userService.getUserById(item.owner_id).subscribe((owner) => {
             this.owner = owner;
+            this.isLoading = false;  
           });
         }
       });

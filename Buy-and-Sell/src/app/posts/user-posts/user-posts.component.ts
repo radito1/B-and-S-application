@@ -18,6 +18,7 @@ import { ConfirmationComponent } from 'src/app/shared/small-components/confirmat
 export class UserPostsComponent {
   currentUser: User | null = null;
   userItems: Item[] = [];
+  isLoading = true;
 
   constructor(
     private authService: AuthService,
@@ -37,14 +38,13 @@ export class UserPostsComponent {
         this.userService.getUserById(authUser.uid).subscribe((user) => {
           this.currentUser = user;
 
-          
           if (this.currentUser && this.currentUser.listedItems) {
             const listedItemsArray = Object.values(
               this.currentUser.listedItems
             ) as string[];
 
             this.fetchItems(listedItemsArray);
-          } else {            
+          } else {
             this.userItems = [];
           }
         });
@@ -53,13 +53,14 @@ export class UserPostsComponent {
   }
 
   fetchItems(itemIds: string[]): void {
-    this.userItems = []; 
+    this.userItems = [];
     const itemObservables = itemIds.map((itemId) =>
       this.crudService.getItemById(itemId)
     );
 
     combineLatest(itemObservables).subscribe((items) => {
       this.userItems = items.filter((item) => !!item) as Item[];
+      this.isLoading = false;
     });
   }
 
@@ -67,13 +68,13 @@ export class UserPostsComponent {
     const dialogRef = this.dialog.open(ConfirmationComponent, {
       data: {
         title: 'Delete Item',
-      content: 'Are you sure you want to delete this item?',
-      action: 'Delete'
-      }
+        content: 'Are you sure you want to delete this item?',
+        action: 'Delete',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {       
+      if (result) {
         this.onDeleteItem(itemId);
       }
     });
@@ -82,10 +83,12 @@ export class UserPostsComponent {
   onDeleteItem(itemId: string): void {
     this.userService.currentUserProfile$.subscribe((user) => {
       if (user && user.uid) {
-        if (user.listedItems && user.listedItems.length > 0){
-          const updatedListedItems = Object.values(user.listedItems).filter(id => id !== itemId);
+        if (user.listedItems && user.listedItems.length > 0) {
+          const updatedListedItems = Object.values(user.listedItems).filter(
+            (id) => id !== itemId
+          );
           this.userService.updateUserListedItems(user.uid, updatedListedItems);
-        }   
+        }
 
         this.crudService
           .deleteItem(itemId)
