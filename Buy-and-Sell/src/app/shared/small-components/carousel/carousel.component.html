@@ -1,0 +1,12 @@
+<ngx-slick-carousel class="carousel" 
+  #slickModal="slick-carousel" 
+  [config]="slideConfig" >
+  <div ngxSlickItem *ngFor="let item of items" class="slide">
+    <div class="text-name">
+      <span class="item-name">{{item.item_name}}</span>
+      <span>{{item.item_price}} €</span>
+    </div>    
+    <div [routerLink]="['/post-details/', item.item_id]" class="image" [style.background-image]="'url(' + item.item_imageUrl + ')'"></div>
+  </div>  
+</ngx-slick-carousel>
+

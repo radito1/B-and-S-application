@@ -12,27 +12,26 @@
             </button>
         </form>
 
-        <div class="result-container">
+        <!-- <div class="result-container"> -->
             <ng-container *ngIf="searchResults.length > 0 ">
-                <div class="search-result" *ngFor="let item of searchResults">
-                    <mat-card [routerLink]="['/post-details/', item.item_id]">
-
-                        <mat-card-header>
-                            <mat-card-title-group>
-                                <mat-card-title>{{item.item_name}}</mat-card-title>
-                                <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
-
-                                <div class="image-container">
-                                    <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
-                                </div>
-                            </mat-card-title-group>
-                        </mat-card-header>
-
-
-                    </mat-card>
-                </div>
+                <mat-grid-list cols="3" rowHeight="350px">
+                    <mat-grid-tile *ngFor="let item of searchResults">
+            
+                        <mat-card class="card" [routerLink]="['/post-details/', item.item_id]">
+            
+                            <mat-card-title>{{item.item_name}}</mat-card-title>
+                            <mat-card-subtitle>{{item.item_price}} euro.</mat-card-subtitle>
+            
+                            <div class="image-container">
+                                <img mat-card-md-image src="{{item.item_imageUrl}}" alt="image">
+                            </div>
+            
+                        </mat-card>
+            
+                    </mat-grid-tile>
+                </mat-grid-list>
             </ng-container>
-        </div>
+        <!-- </div> -->
         <ng-container *ngIf="showNoResultMessage">
             <div>
 

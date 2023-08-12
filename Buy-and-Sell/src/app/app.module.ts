@@ -9,16 +9,13 @@ import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
 import { PostsModule } from './posts/posts.module';
 import { SmallComponentsModule } from './shared/small-components/small-components.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { environment } from './../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';import { HomeModule } from './pages/home/home.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-
-
-
-
 
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
@@ -34,7 +31,8 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
     UserModule,
     PostsModule,
     HomeModule,
-    SmallComponentsModule
+    SmallComponentsModule,
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent],

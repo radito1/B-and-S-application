@@ -48,6 +48,10 @@ export class CrudService {
     return this.db.object<Item>(`items/${itemId}`).valueChanges();
   }
 
+  getItems(limit: number): Observable<any[]> {
+    return this.db.list('items', ref => ref.limitToLast(limit)).valueChanges();
+  }
+
   searchItemsByName(query: string): Observable<Item[]> {
     return this.db.list<Item>('items').valueChanges().pipe(
       map(items => {
