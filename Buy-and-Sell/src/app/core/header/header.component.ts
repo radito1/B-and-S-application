@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/']);
       })
       .catch((err) => {
+        console.log('Error logging out:' + err)
         this.snackBar.open(
           'There was a problem while trying to logout!',
           'close'

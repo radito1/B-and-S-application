@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/shared/models/item';
 import { User } from 'src/app/shared/models/user';
 import { CrudService } from 'src/app/shared/services/crud/crud.service';
@@ -20,6 +20,7 @@ export class PostDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private crudService: CrudService,
     private userService: UserService,
+    private router: Router,
   ) {}
   
   ngOnInit() {
@@ -37,6 +38,24 @@ export class PostDetailsComponent implements OnInit {
           });
         }
       });
+    });
+  }
+
+  buyItem(ownerId:string, itemId:string):void {
+    this.userService.getUserById(ownerId).subscribe((user) => {
+      if (user && user.uid) {      
+        const updatedListedItems = Object.values(user.listedItems).filter(id => id !== itemId);
+        this.userService.updateUserListedItems(user.uid, updatedListedItems);
+
+        this.crudService
+          .deleteItem(itemId)
+          .then(() => {
+            this.router.navigate(['/catalog']);
+          })
+          .catch((error) => {
+            console.error('Error deleting item:', error);
+          });
+      }
     });
   }
 }

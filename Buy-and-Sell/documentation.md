@@ -26,7 +26,7 @@ The Buy & Sell app is a user-friendly platform that enables users to easily buy 
 - Search Functionality
 - Profile Editing
 - Viewing and Managing User's Own Listings
-- ntegration with Firebase Realtime Database, Authentication, and Storage
+- Integration with Firebase Realtime Database, Authentication, and Storage
 
 ## Usage
 

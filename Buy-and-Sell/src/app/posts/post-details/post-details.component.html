@@ -18,7 +18,7 @@
         
         <div class="button-container" *ngIf="user$ | async as user">
             <mat-card-actions>
-                <button mat-raised-button color="primary" *ngIf="user.uid !== owner.uid" >Buy</button>               
+                <button mat-raised-button color="primary" *ngIf="user.uid !== owner.uid" (click)="buyItem(item.owner_id,item.item_id)">Buy</button>               
             </mat-card-actions>
         </div>
     </mat-card>
